@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    margin: 0;
+    padding: 1em;
+    background-color: lightgray;
+    background-image: url(campbell-3ZUsNJhi_Ik-unsplash.jpg);
+    max-width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+input,
+button,
+input[type="file"]::file-selector-button {
+    font-size: inherit;
+}
+
+button {
+    display: block;
+    width: 100%;
+    background-color: white;
+    padding: 0.3em;
+    border-radius: 0.9em;
+    border: none;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin: 0.5em 0;
+}
+
+form {
+    min-width: 50%;
+    margin-inline: auto;
+    position: relative;
+    padding-top: 5%
+}
+
+fieldset {
+    width: 100%;
+    border-radius: 0.5em;
+    background-color: whitesmoke;
+    background-color: transparent;
+    min-inline-size: 0;
+    max-inline-size: 30em;
+    margin-inline: auto;
+    position: relative;
+}
+
+.wrapper {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    text-align: center;
+}
+
+.wrapper::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-color: rgb(234, 232, 232);
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+input {
+    /* background-color: inherit; */
+    border-radius: 0.7em;
+    padding: 0.2em;
+    /* color: white; */
+    border: none;
+}
+
+
+
+legend {
+    color: white;
+    background-color: darkslategray;
+    padding: 0.25em 0.5em;
+    border-radius: 0.5em;
+}
+
+.drag-area {
+    min-height: 15em;
+    background-color: white;
+    border-radius: 0.7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1em;
+    position: relative;
+}
+
+.icon{
+    font-size: 3em;
+}
+
+.active{
+    background-color: rgb(192, 251, 231);
+}
+
+input[type="file"] {
+    max-width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.browse{
+    text-decoration: underline;
+    color: rgb(27, 127, 227);
+}
+
+.error{
+    color: red;
+}
+
+
+/* a {
+    display: block;
+    margin-top: 2em;
+    margin-inline: auto;
+    text-align: center;
+    color: white;
+} */
