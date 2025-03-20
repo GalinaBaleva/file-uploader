@@ -1,8 +1,12 @@
 import express from 'express'
 import morgan from 'morgan'
+import { createWriteStream } from 'node:fs'
 import { readFile, readdir, writeFile } from 'node:fs/promises'
+import path from 'node:path'
+import { pipeline } from 'node:stream/promises'
 
 const PORT = 8005
+const uploadDir = './uploads'
 
 
 const app = express()
@@ -18,45 +22,29 @@ status  :status
 --------------------------------------------------`
 
 app.use(
-    express.json(),
-    express.urlencoded({ extended: false }),
-    express.text(),
     express.static('public'),
     morgan(logFormat)
 )
 
 
 app.post('/uploading', async (req, res) => {
-    const body = req.body
 
-    console.log(body)
+    const filename = req.headers['file-name']
 
-    // await writeFile('cars/' + id, JSON.stringify(body, null, 2))
+    if (!filename) {
+        return res.status(400).send('Missing file-name header')
+    }
 
-    // res.status(201).location(`/cars/${id}`).end()
+    const filePath = path.join(uploadDir, filename);
+    const writeStream = createWriteStream(filePath);
+
+    try {
+        await pipeline(req, writeStream)
+        res.status(200).send('File uploaded successfully')
+    } catch (error) {
+        res.status(500).send('Internal Server Error')
+    }
+
 })
-
-// app.get('/cars/:id', async (req, res) => {
-//     const path = req.path.split('/')
-//     const id = path[path.length - 1]
-//     const info = await readFile('cars/'+id, {encoding: 'utf-8'})
-//     const carInfo = JSON.parse(info)
-//     const carsI = Object.entries(carInfo)
-
-//     res.render('car', { carsI })
-// })
-
-
-// app.get('/cars', async (req, res) => {
-
-//     const files = await readdir('cars/')
-
-//     res.render('cars', { files })
-// })
-
-app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`))
-
-
-
 
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`))
