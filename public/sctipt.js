@@ -52,22 +52,18 @@ async function onSubmit(e) {
             return
         }
 
-        const file = files[0]
+        Array.from(files).forEach(async (file) => {
+            const resp = await fetch('/uploading', {
+                method: 'POST',
+                headers: { 'file-name': file.name },
+                body: file
+            })
 
-        // const { name, size, type } = file
-        // console.log({ name, size, type })
+            console.log(resp.ok, await resp.text())
+        })
 
-        // const id = fileid.value
-
-        const resp = await fetch('/cars/' + id, { method: 'PUT', body: file })
-
-
-        // console.log(resp.headers.get('location'))
-        // if (resp.status === 201) {
-        //     form.reset()
-
-        //     window.location.href = resp.url
-        // }
+        filesLength.textContent = ``
+        dragArea.classList.remove('active')
 
     } catch (error) {
 
