@@ -58,12 +58,11 @@ async function onSubmit(e) {
                 headers: { 'file-name': file.name },
                 body: file
             })
-
-            console.log(resp.ok, await resp.text())
         })
 
         filesLength.textContent = ``
         dragArea.classList.remove('active')
+        window.location.href = '/'
 
     } catch (error) {
 
