@@ -1,6 +1,6 @@
 import express from 'express'
 import morgan from 'morgan'
-import { createWriteStream } from 'node:fs'
+import { createReadStream, createWriteStream } from 'node:fs'
 import { readFile, readdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pipeline } from 'node:stream/promises'
@@ -45,6 +45,22 @@ app.post('/uploading', async (req, res) => {
         res.status(500).send('Internal Server Error')
     }
 
+})
+
+app.get('/', async (req, res) => {
+    try {
+        const files = await readdir(uploadDir);
+
+        res.status(200).render('index', { files });
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+app.get('/uploads/*', (req, res) => {
+    const filePath = path.join(uploadDir, req.params[0]);
+
+    res.download(filePath)
 })
 
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`))
