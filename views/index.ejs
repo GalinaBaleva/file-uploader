@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset=utf-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Upload JSON</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="sctipt.js"></script>
+    <script src="https://kit.fontawesome.com/e0c0fbfb1b.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+
+    <form name="fileUpload" action="/uploading" method="POST">
+        <fieldset name="fieldset">
+            <div class="wrapper">
+                <legend>Upload JSON</legend>
+                <div class="drag-area">
+                    <div class="icon">
+                        <i class="fa fa-folder-open"></i>
+                    </div>
+                    <span class="header">Drag & Drop</span>
+                    <span class="header">or </span>
+                    <input id="fileInput" type="file" multiple required>
+                    <span class="browse">Browse</span>
+                    <span class="files-length"></span>
+                </div>
+                <div class="uploading">
+                    <button>Upload</button>
+                    <div class="upload-rogress-bar-container">
+                        <div class="upload-rogress-bar-progress"></div>
+                    </div>
+                </div>
+
+                <button type="reset">Reset</button>
+            </div>
+        </fieldset>
+    </form>
+    <% if(files.length>= 1) {%>
+        <div class="wrapper-ul">
+            <ul class="file-list">
+                <% files.forEach(file=>{ %>
+                    <li><a href="/uploads/<%= file %>" download>
+                            <%= file%>
+                        </a></li>
+                    <% }) %>
+            </ul>
+        </div>
+        <% } %>
+</body>
+
+</html>
