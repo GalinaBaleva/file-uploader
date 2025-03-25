@@ -4,8 +4,9 @@ import { createReadStream, createWriteStream } from 'node:fs'
 import { readFile, readdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pipeline } from 'node:stream/promises'
+import helmet from 'helmet'
 
-const PORT = 8005
+const PORT = process.env.PORT
 const uploadDir = './uploads'
 
 
@@ -22,6 +23,7 @@ status  :status
 --------------------------------------------------`
 
 app.use(
+    helmet(),
     express.static('public'),
     morgan(logFormat)
 )
