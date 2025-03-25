@@ -83,8 +83,6 @@ input {
     border: none;
 }
 
-
-
 legend {
     color: white;
     background-color: darkslategray;
@@ -104,11 +102,11 @@ legend {
     position: relative;
 }
 
-.icon{
+.icon {
     font-size: 3em;
 }
 
-.active{
+.active {
     background-color: rgb(192, 251, 231);
 }
 
@@ -126,27 +124,51 @@ input[type="file"] {
     cursor: pointer;
 }
 
-.browse{
+.browse {
     text-decoration: underline;
     color: rgb(27, 127, 227);
 }
 
-.error{
+.error {
     color: red;
 }
 
-.wrapper-ul{
+.upload-rogress-bar-container {
+    margin-top: 1.5em;
+    width: 400px;
+    height: 23px;
+    background-color: rgb(234 235 240);
+    border-radius: 20px;
+    box-shadow: 0 0 4em 4em rgba(255, 255, 255, 0.15);
+}
+
+.upload-rogress-bar-progress {
+    background: linear-gradient(to right, rgba(51, 139, 147), rgb(182, 244, 146));
+    border-radius: 0.9em;
+    color: rgb(237,235, 235);
+    font-weight: 900;
+    font-size: 0.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0;
+    height: 100%;
+}
+
+
+.wrapper-ul {
     position: relative;
     border-radius: 0.5em;
     /* padding-top: 1%; */
 }
+
 .file-list {
     padding: 1em;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1.5em;
-    text-align: center;    
+    text-align: center;
     list-style: none;
     justify-content: center;
 }
